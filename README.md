@@ -21,7 +21,7 @@ across a given region and housing type." Each of these are seperated into a docu
 of bedrooms in each home. The documents also provide data and metrics for all counties in all states from
 2000 until 2024.
 
-![Alt text](real_estate_project/images/zillow_data.png)
+![DAX Image](images/zillow_data.png)
 
 However, in it's current format this data is too unorganized, contains unecessary information, and is 
 seperated into five different .csv files according to how many bedrooms the homes have (one through five+ bedrooms).
