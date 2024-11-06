@@ -35,11 +35,11 @@ Here is the main method to give an overview of what this ETL script is doing
 
 First, I created a log method to track progress and identify any errors
 
-![DAX Image](images/python/log_progress.png)
+![DAX Image](images/python/log_progress.PNG)
 
 Next, I extracted all of the .csv data into a list of Pandas dataframes
 
-![DAX Image](images/python/extract.png)
+![DAX Image](images/python/extract.PNG)
 
 
 
