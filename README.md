@@ -14,7 +14,7 @@ I wanted to create a Power BI dashboard that would allow me to take a deep look 
 have evolved over the years. All of the data that was used in this project was obtained from Zillow's
 Home Value Index (ZHVI):
 
-[Link Text](https://www.zillow.com/research/data/)
+https://www.zillow.com/research/data/
 
 According to Zillow, the data in these .csv files reflect the "typical home value and market changes
 across a given region and housing type." Each of these are seperated into a document based on the number
@@ -31,15 +31,15 @@ data to be moved to my PostgreSQL database.
 ## Python and Pandas
 Here is the main method to give an overview of what this ETL script is doing
 
-![Alt text](real_estate_project/images/python/main.png)
+![DAX Image](images/python/main.png)
 
 First, I created a log method to track progress and identify any errors
 
-![Alt text](real_estate_project/images/python/log_progress.png)
+![DAX Image](images/python/log_progress.png)
 
 Next, I extracted all of the .csv data into a list of Pandas dataframes
 
-![Alt text](real_estate_project/images/python/extract.png)
+![DAX Image](images/python/extract.png)
 
 
 
