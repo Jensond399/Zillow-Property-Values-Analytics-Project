@@ -7,22 +7,21 @@ This project processes and loads real estate data from zillow into a PostgreSQL 
 
 1. **Clone the repository:**
     git clone https://github.com/yourusername/real_estate_project.git
-    cd real_estate_project
 
 2. **Set up environment:**
+   
     python -m venv venv
+   
     .\venv\Scripts\activate
 
 3. **Install dependencies:**
     pip install -r requirements.txt
 
 4. **Configure database settings:**
+   
     add your own database credentials to the db_config.txt file
-    db_username=your_username
-    db_password=your_password
-    db_host=localhost
-    db_port=5432
-    db_name=real_estate_values
+
 
 5. **Run the script:**
+   
     python ETL.py
