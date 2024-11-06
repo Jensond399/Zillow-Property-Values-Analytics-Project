@@ -31,7 +31,7 @@ data to be moved to my PostgreSQL database.
 ## Python and Pandas
 Here is the main method to give an overview of what this ETL script is doing
 
-![DAX Image](images/python/main.png)
+![DAX Image](images/python/main.PNG)
 
 First, I created a log method to track progress and identify any errors
 
