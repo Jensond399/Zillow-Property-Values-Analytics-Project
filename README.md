@@ -43,9 +43,12 @@ Next, I extracted all of the .csv data into a list of Pandas dataframes
 
 <img src="images/python/extract.PNG" width="500" />
 
-Now I want to 
+Now I want to use Pandas to melt the data frames into as few columns as possible. This will ensure
+that a date, county, and number of bedrooms combination can be used as a primary key to retrieve 
+an average property value.
 
 <img src="images/python/transform_1.PNG" width="500" />
+
 
 
 
