@@ -49,9 +49,39 @@ an average property value.
 
 <img src="images/python/transform_1.PNG" width="500" />
 
-Next, I need to contenate all of the dataframes into one 
+Next, I need to concatenate all of the dataframes from my list into one dataframe, and assign a value
+to indicate how many bedrooms are in the home. Once that is finished I will split this final dataframe,
+based on the columns so that they will both match the final tables I will be creating in PostgreSQL.
 
-<img src="images/python/transform_3.PNG" width="600" />
+<img src="images/python/transform_3.png" width="600" />
+
+With the data now more organized I am going to use the Seaborn module to identify where null values are present in my
+data and the Matplotlib module to visualize them.
+
+<img src="images/heatmap/null_before.png" width="400" />
+
+Now with Pandas I can remove all rows which have a null value where a property value should be. 
+Checking this visually I can see it was succesful.
+
+<img src="images/heatmap/null_after.png" width="400" />
+
+Now that my data has been transformed into a suitable format and properly cleaned I want to connect to my PostgreSQL 
+database using the SQLAlchemy module. With this code I will connect using my credentials and then test the connection 
+to confirm it is working.
+
+<img src="images/python/connect.PNG" width="500" />
+
+With my SQLAlchemy engine I can now execute an SQL query directly from my script and create the necessary 
+tables in the database.
+
+<img src="images/python/sql.PNG" width="400" />
+
+Finally, I will use my engine to load and commit all of my data into the newly created tables in my database. 
+Checking the log file I can see that everything was successful.
+
+<img src="images/python/log_file.PNG" width="400" />
+
+
 
 
 
