@@ -49,7 +49,9 @@ an average property value.
 
 <img src="images/python/transform_1.PNG" width="500" />
 
+Next, I need to contenate all of the dataframes into one 
 
+<img src="images/python/transform_3.PNG" width="600" />
 
 
 
