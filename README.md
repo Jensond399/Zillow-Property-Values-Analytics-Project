@@ -1,7 +1,7 @@
 # Zillow Real Estate Project
 
 ## Overview
-This project processes and loads real estate data from zillow into a PostgreSQL database.
+This project processes and loads real estate data from Zillow into a PostgreSQL database.
 
 ## Setup
 1. Clone the repository
@@ -25,22 +25,29 @@ of bedrooms in each home. The documents also provide data and metrics for all co
 
 However, in it's current format this data is too unorganized, contains unecessary information, and is 
 seperated into five different .csv files according to how many bedrooms the homes have (one through five+ bedrooms).
-In order to remedy this I first sought to create an ETL script in Python, in order to use Pandas to prepare the 
-data to be moved to my PostgreSQL database.
+In order to remedy this I first sought to create an ETL script in Python.
 
-## Python and Pandas
+## Python 
+My script will be using Pandas for data extraction and manipulation, Seaborn to identify null values, and 
+SQLAlchemy to create an engine and commit data to my PostgreSQL database.
+
 Here is the main method to give an overview of what this ETL script is doing
 
-![DAX Image](images/python/main.PNG)
+<img src="images/python/main.PNG" width="500" />
 
 First, I created a log method to track progress and identify any errors
 
-![DAX Image](images/python/log_progress.PNG)
+<img src="images/python/log_progress.PNG" width="300" />
 
 Next, I extracted all of the .csv data into a list of Pandas dataframes
 
-![DAX Image](images/python/extract.PNG)
+<img src="images/python/extract.PNG" width="500" />
 
+Now I want to use Pandas to melt the data frames into as few columns as possible. This will ensure
+that a date, county, and number of bedrooms combination can be used as a primary key to retrieve 
+an average property value.
+
+<img src="images/python/transform_1.PNG" width="500" />
 
 
 
