@@ -21,7 +21,7 @@ across a given region and housing type." Each of these are seperated into a docu
 of bedrooms in each home. The documents also provide data and metrics for all counties in all states from
 2000 until 2024.
 
-![DAX Image](images/zillow_data.png)
+<img src="images/zillow_data.png" width="1100" />
 
 However, in it's current format this data is too unorganized, contains unecessary information, and is 
 seperated into five different .csv files according to how many bedrooms the homes have (one through five+ bedrooms).
@@ -85,7 +85,7 @@ Checking the log file I can see that everything was successful.
 Now that my ETL script is complete I can go to my PostgreSQL database and confirm that the tables were created
 successfully and my data is loaded.
 
-<img src="images/ERD.png" width="500" />
+<img src="images/ERD.png" width="700" />
 
 ## Power Bi
 
@@ -103,7 +103,7 @@ number of bedrooms in the home. Using this criteria it will provide the followin
 2. A county growth chart showing which counties have the highest property value.
 3. A line chart displaying the average property values.
 
-<img src="images/dashboard.PNG" width="1000" />
+<img src="images/dashboard.PNG" width="1100" />
 
 
 
