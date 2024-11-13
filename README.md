@@ -1,4 +1,4 @@
-# Zillow Real Estate Project
+# Zillow Real Estate Data Project
 
 ## Overview
 This project processes and loads real estate data from Zillow into a PostgreSQL database.
