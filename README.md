@@ -4,104 +4,83 @@
 This project processes and loads real estate data from Zillow into a PostgreSQL database.
 
 ## Setup
-1. Clone the repository
-2. Set up virtual enviornment and install dependencies 
-3. Modify db_config.txt file to your PostgreSQL credentials
-4. Run ETL.py
+1. Clone the repository.
+2. Set up a virtual environment and install dependencies.
+3. Modify the `db_config.txt` file to include your PostgreSQL credentials.
+4. Run `ETL.py`.
 
 ## Purpose
-I wanted to create a Power BI dashboard that would allow me to take a deep look at how property values
-have evolved over the years. All of the data that was used in this project was obtained from Zillow's
-Home Value Index (ZHVI):
+The purpose of this project is to create a Power BI dashboard that allows me to analyze how property values have evolved over the years. All the data used in this project was obtained from Zillow's Home Value Index (ZHVI):
 
 https://www.zillow.com/research/data/
 
-According to Zillow, the data in these .csv files reflect the "typical home value and market changes
-across a given region and housing type." Each of these are seperated into a document based on the number
-of bedrooms in each home. The documents also provide data and metrics for all counties in all states from
-2000 until 2024.
+According to Zillow, the data in these .csv files reflect the "typical home value and market changes across a given region and housing type." The data is separated into documents based on the number of bedrooms in each home, and it provides data and metrics for all counties in all states from 2000 to 2024
 
 <img src="images/zillow_data.png" width="1100" />
 
-However, in it's current format this data is too unorganized, contains unecessary information, and is 
-seperated into five different .csv files according to how many bedrooms the homes have (one through five+ bedrooms).
-In order to remedy this I first sought to create an ETL script in Python.
+However, the data in its current format is unorganized, contains unnecessary information, and is split across five different .csv files based on the number of bedrooms (one through five+ bedrooms). To address this, I created an ETL (Extract, Transform, Load) script in Python to clean and organize the data.
 
 ## Python 
-My script will be using Pandas for data extraction and manipulation, Seaborn to identify null values, and 
-SQLAlchemy to create an engine and commit data to my PostgreSQL database.
+The ETL script uses the following Python libraries:
+- **Pandas** for data extraction and manipulation.
+- **Seaborn** to visualize null values.
+- **SQLAlchemy** to connect to PostgreSQL and commit data.
 
-Here is the main method to give an overview of what this ETL script is doing
+Below is the main function to give an overview of what the ETL script is doing.
 
 <img src="images/python/main.PNG" width="500" />
 
-First, I created a log method to track progress and identify any errors
+First, I created a log method to track progress and identify errors.
 
 <img src="images/python/log_progress.PNG" width="300" />
 
-Next, I extracted all of the .csv data into a list of Pandas dataframes
+Next, I extracted all of the .csv data into a list of Pandas dataframes.
 
 <img src="images/python/extract.PNG" width="500" />
 
-Now I want to use Pandas to melt the data frames into as few columns as possible. This will ensure
-that a date, county, and number of bedrooms combination can be used as a primary key to retrieve 
-an average property value.
+Then, I used Pandas to melt the dataframes into as few columns as possible. This ensures that the combination of date, county, and number of bedrooms can be used as a primary key to retrieve the average property value.
 
 <img src="images/python/transform_1.PNG" width="500" />
 
-Next, I need to concatenate all of the dataframes from my list into one dataframe, and assign a value
-to indicate how many bedrooms are in the home. Once that is finished I will split this final dataframe,
-based on the columns so that they will both match the final tables I will be creating in PostgreSQL.
+Next, I concatenated all the dataframes into a single dataframe and added a column to indicate the number of bedrooms. Once that was done, I split the final dataframe into the appropriate columns to match the final tables in PostgreSQL.
 
 <img src="images/python/transform_3.png" width="600" />
 
-With the data now more organized I am going to use the Seaborn module to identify where null values are present in my
-data and the Matplotlib module to visualize them.
+With the data now more organized, I used Seaborn to identify where null values are present, and Matplotlib to visualize them.
 
 <img src="images/heatmap/null_before.png" width="400" />
 
-Now with Pandas I can remove all rows which have a null value where a property value should be. 
-Checking this visually I can see it was succesful.
+After removing the rows with null values, I checked visually to confirm the data was cleaned.
 
 <img src="images/heatmap/null_after.png" width="400" />
 
-Now that my data has been transformed into a suitable format and properly cleaned I want to connect to my PostgreSQL 
-database using the SQLAlchemy module. With this code I will connect using my credentials and then test the connection 
-to confirm it is working.
+Now that the data was transformed and cleaned, I connected to my PostgreSQL database using SQLAlchemy. With this code, I used my credentials to establish a connection and tested it to confirm it was working.
 
 <img src="images/python/connect.PNG" width="500" />
 
-With my SQLAlchemy engine I can now execute an SQL query directly from my script and create the necessary 
-tables in the database.
+With the SQLAlchemy engine, I executed SQL queries to create the necessary tables in the database.
 
 <img src="images/python/sql.PNG" width="400" />
 
-Finally, I will use my engine to load and commit all of my data into the newly created tables in my database. 
-
-Checking the log file I can see that everything was successful.
+Finally, I loaded and committed all the data into the newly created tables in my PostgreSQL database. Checking the log file confirmed that everything was successful.
 
 <img src="images/python/log_file.PNG" width="400" />
 
-Now that my ETL script is complete I can go to my PostgreSQL database and confirm that the tables were created
-successfully and my data is loaded.
+I then went to my PostgreSQL database to confirm the tables were created successfully and the data was loaded.
 
 <img src="images/ERD.png" width="700" />
 
 ## Power Bi
 
-The last step in this process is to connect my database to Power Bi and upload the data. I want part of my 
-dashboard to give me an accurate property value growth over a time period which the user can specify. In order
-to achieve this I can use DAX scripts to create a measure that will calculate this growth.
+The final step in the process was to connect my PostgreSQL database to Power BI and upload the data. One part of my dashboard allows users to specify a timeframe and analyze property value growth. To achieve this, I used DAX scripts to create a measure for calculating growth over time.
 
 <img src="images/dax/dax_1.png" width="500" />
 
-Using this script as well as the data from my database I can now create a dashboard to give accurate information.
-This dashboard allows for the user to specify whether they want data based on state, county, timeframe, as well as
-number of bedrooms in the home. Using this criteria it will provide the following data:
+Using this DAX script along with the data from my database, I created an interactive dashboard that allows users to filter data by state, county, timeframe, and number of bedrooms. The dashboard includes the following visualizations:
 
-1. A heatmap that uses the DAX script to highlight which counties in the selected state have seen the most growth
-2. A county growth chart showing which counties have the highest property value.
-3. A line chart displaying the average property values.
+1. A heatmap showing which counties in the selected state have seen the most growth.
+2. A county growth chart displaying the counties with the highest property values.
+3. A line chart showing the average property values over time.
 
 <img src="images/dashboard.PNG" width="1100" />
 
