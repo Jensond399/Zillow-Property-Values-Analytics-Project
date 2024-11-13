@@ -77,9 +77,33 @@ tables in the database.
 <img src="images/python/sql.PNG" width="400" />
 
 Finally, I will use my engine to load and commit all of my data into the newly created tables in my database. 
+
 Checking the log file I can see that everything was successful.
 
 <img src="images/python/log_file.PNG" width="400" />
+
+Now that my ETL script is complete I can go to my PostgreSQL database and confirm that the tables were created
+successfully and my data is loaded.
+
+<img src="images/ERD.png" width="500" />
+
+## Power Bi
+
+The last step in this process is to connect my database to Power Bi and upload the data. I want part of my 
+dashboard to give me an accurate property value growth over a time period which the user can specify. In order
+to achieve this I can use DAX scripts to create a measure that will calculate this growth.
+
+<img src="images/dax/dax_1.png" width="500" />
+
+Using this script as well as the data from my database I can now create a dashboard to give accurate information.
+This dashboard allows for the user to specify whether they want data based on state, county, timeframe, as well as
+number of bedrooms in the home. Using this criteria it will provide the following data:
+
+1. A heatmap that uses the DAX script to highlight which counties in the selected state have seen the most growth
+2. A county growth chart showing which counties have the highest property value.
+3. A line chart displaying the average property values.
+
+<img src="images/dashboard.PNG" width="1000" />
 
 
 
